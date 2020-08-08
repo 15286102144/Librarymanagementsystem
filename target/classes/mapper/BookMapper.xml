@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group.dao.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.group.pojo.Book" >
+    <id column="bookId" property="bookid" jdbcType="INTEGER" />
+    <result column="bookName" property="bookname" jdbcType="VARCHAR" />
+    <result column="theme" property="theme" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="press" property="press" jdbcType="VARCHAR" />
+    <result column="sum" property="sum" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="picturePath" property="picturepath" jdbcType="VARCHAR" />
+    <result column="bookPath" property="bookpath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bookId, bookName, theme, author, press, sum, price, picturePath, bookPath
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group.pojo.Book" >
+    insert into book (bookId, bookName, theme, 
+      author, press, sum, 
+      price, picturePath, bookPath
+      )
+    values (#{bookid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{press,jdbcType=VARCHAR}, #{sum,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{picturepath,jdbcType=VARCHAR}, #{bookpath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group.pojo.Book" >
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookid != null" >
+        bookId,
+      </if>
+      <if test="bookname != null" >
+        bookName,
+      </if>
+      <if test="theme != null" >
+        theme,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="press != null" >
+        press,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="picturepath != null" >
+        picturePath,
+      </if>
+      <if test="bookpath != null" >
+        bookPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookid != null" >
+        #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="bookname != null" >
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="press != null" >
+        #{press,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="picturepath != null" >
+        #{picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="bookpath != null" >
+        #{bookpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group.pojo.Book" >
+    update book
+    <set >
+      <if test="bookname != null" >
+        bookName = #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="press != null" >
+        press = #{press,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null" >
+        sum = #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="picturepath != null" >
+        picturePath = #{picturepath,jdbcType=VARCHAR},
+      </if>
+      <if test="bookpath != null" >
+        bookPath = #{bookpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group.pojo.Book" >
+    update book
+    set bookName = #{bookname,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      press = #{press,jdbcType=VARCHAR},
+      sum = #{sum,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      picturePath = #{picturepath,jdbcType=VARCHAR},
+      bookPath = #{bookpath,jdbcType=VARCHAR}
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </update>
+
+  <select id="select" resultMap="BaseResultMap" parameterType="com.group.pojo.Book">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM book
+    <trim prefix=" where" suffix=" " suffixOverrides="and">
+      <if test="bookid!=null and bookid!=''">
+        bookId = #{bookid,jdbcType=INTEGER} and
+      </if>
+      <if test="bookname!=null and bookname!=''">
+        bookName = #{bookname,jdbcType=VARCHAR} and
+      </if>
+      <if test="author!='' and author!=null">
+        author=#{author} and
+      </if>
+      <if test="press!='' and press!=null">
+        press=#{press} and
+      </if>
+      <if test="price!='' and price!=null">
+        price=#{price} and
+      </if>
+    </trim>
+  </select>
+  <select id="selectByid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from book where bookid=#{bookid}
+  </select>
+  <select id="update" parameterType="java.lang.Integer">
+        update  book set sum=sum-1 where bookId=#{book}
+    </select>
+  <delete id="del">
+    delete from book
+    <trim prefix=" where">
+      bookId in (
+      <foreach separator="," item="x" collection="list">
+        #{x}
+      </foreach>
+      )
+    </trim>
+  </delete>
+
+  <!--  还一本书book->sum怎加1-->
+  <update id="totalup" parameterType="java.lang.Integer">
+    UPDATE book SET sum=sum+1 WHERE bookId=#{bookid}
+  </update>
+  <!--  批量还书book->sum+-->
+  <update id="totalups"  >
+    UPDATE book SET sum=sum+1
+    <trim prefix=" where" >
+      bookId in(
+      <foreach collection="list" item="x" separator=",">
+        #{x}
+      </foreach>
+      )
+    </trim>
+  </update>
+  <update id="updateByid" parameterType="java.lang.Integer">
+    UPDATE book SET sum=sum+1
+    where bookId=#{bookid}
+  </update>
+
+  <select id="getStatistic" resultMap="BaseResultMap"  >
+  select
+count(1) as bookId,bookName
+from borrowbooks,book where book.bookId=borrowbooks.bookId
+group by
+borrowbooks.bookId
+  </select>
+
+  <select id="getStatistic2" resultMap="BaseResultMap"  >
+  select  year(date) as sum ,
+month(date) as price,
+count(1)as bookid
+from borrowbooks,book where book.bookId=borrowbooks.bookId
+group by year(date),
+month(date)
+  </select>
+</mapper>

@@ -1,0 +1,16 @@
+com\group\controller\BorrowbooksController.class
+com\group\service\UserService.class
+com\group\service\BookService.class
+com\group\dao\BookMapper.class
+com\group\controller\BookController.class
+com\group\service\EvaluationService.class
+com\group\service\impl\BookServiceImpl.class
+com\group\utils\GetIp.class
+com\group\pojo\Book.class
+com\group\dao\BorrowbooksMapper.class
+com\group\pojo\Page.class
+com\group\pojo\User.class
+com\group\pojo\Evaluation.class
+com\group\service\BorrowbooksService.class
+com\group\utils\ServletContextListenerImpl.class
+com\group\pojo\Borrowbooks.class

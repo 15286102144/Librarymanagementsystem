@@ -1,0 +1,328 @@
+.dakuang {
+	width: 1000px;
+	margin: 30px auto;
+}
+
+.daohanglan {
+	height: 50px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.4);
+	display: flex;
+	justify-content: center;
+	margin: 50px auto;
+	position: absolute;
+	top: 10px;
+}
+
+.anniu {
+	height: 50px;
+	width: 100px;
+	/* margin: 1px; */
+	text-align: center;
+	line-height: 48px;
+	color: white;
+}
+
+.anniu:hover {
+	background-color:  #d18c04;
+}
+
+.anniu1 {
+	height: 50px;
+	width: 100px;
+	/* background-color: red; */
+	/* margin: 1px; */
+	text-align: center;
+	line-height: 50px;
+	color: white;
+}
+
+.anniu1:hover {
+	background-color:  #d18c04;
+}
+
+.anniu1_son {
+	position: relative;
+	height: 150px;
+	width: 100px;
+	background-color: burlywood;
+	top: 1px;
+	left: 0px;
+	display: none;
+	/* transition: .7s; */
+}
+
+.anniu1:hover .anniu1_son {
+	display: block;
+	/* height: 100px; */
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+}
+
+.lunbotu {
+	width: 100%;
+	height: 400px;
+	background-color: blueviolet;
+	margin: 10px auto;
+}
+
+.lunbotu_img {
+	width: 100%;
+	height: 400px;
+}
+.ding{
+	position: relative;
+	top: -25px;
+	left: 0px;
+}
+.sou {
+	width: 300px;
+	height: 40px;
+	border-radius: 30px;
+	/* background-color: #00FFFF; */
+	background-color: rgba(255, 255, 255, 0.4);
+	position: relative;
+	top:-120px ;
+	left: 350px;
+	/* text-align: center; */
+	line-height: 40px;
+	font-size: 23px;
+	color: black;
+	/* border: 1px black solid; */
+}
+
+
+.diva {
+	height: 440px;
+	width: 1000px;
+	background-color: green;
+	margin: 0px auto;
+}
+
+.left {
+	width: 250px;
+	height: 440px;
+	background-color: black;
+	float: left;
+	position: relative;
+	/* 相对 */
+}
+
+.banner {
+	width: 250px;
+	height: 40px;
+	margin-top: 4px;
+	background-color: black;
+	cursor: pointer;
+}
+
+.banner_son {
+	width: 650px;
+	height: 438px;
+	background-color: white;
+	position: absolute;
+	/* 绝对 */
+	left: 250px;
+	top: 0px;
+	display: none;
+	z-index: 13;
+	/* margin: 0px 1px; */
+	border: 1px red solid;
+}
+
+
+
+.img1 {
+	width: 750px;
+	height: 440px;
+}
+
+.img2 {
+	width: 650px;
+	height: 440px;
+
+}
+
+.title {
+	text-align: center;
+	line-height: 40px;
+	color: white;
+}
+
+.banner:hover .banner_son {
+	display: block;
+}
+
+.banner:hover {
+	background-color: red;
+}
+
+.right {
+	width: 750px;
+	height: 440px;
+	float: left;
+	background-color: #FF0000;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	z-index: 0;
+}
+
+
+
+.miaosha {
+	width: 1000px;
+	height: 300px;
+	/* background-color: darkgoldenrod; */
+	display: flex;
+	margin: 30px auto;
+}
+
+.miaosha_son {
+	width: 200px;
+	height: 300px;
+	background-color: white;
+	/* margin: 1px; */
+	color: red;
+}
+
+.miaosha_son:hover{
+	border: 1px solid red;
+}
+.miaosha_son:hover .xiadan{
+	display: block;
+}
+.img_miaosha {
+	width: 200px;
+	height: 200px;
+}
+
+.miaosha_son_son {
+	width: 200px;
+	height: 56px;
+	/* background-color:black; */
+	position: relative;
+	/* top: 200px; */
+	left: 0px;
+	text-align: center;
+	line-height: 56px;
+	color: #FF0000;
+	/* size: 40px; */
+}
+.xiadan{
+	width: 180px;
+	height: 40px;
+	background-color: red;
+	color: white;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 40px;
+	display: none;
+	position: relative;
+	top: -34px;
+	left: 9px;
+	cursor: pointer;
+}
+
+
+.dangao {
+	width: 1000px;
+	height: 620px;
+	/* background-color: #008000; */
+	border-top: 2px solid black;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.dangao_son {
+	width: 280px;
+	height: 280px;
+	/* background-color: bisque; */
+	margin: 18px auto;
+	/* overflow: hidden; */
+	position: relative;
+}
+
+.dangao_img {
+	width: 280px;
+	height: 280px;
+}
+
+.dangaodong {
+	width: 260px;
+	height: 75px;
+	background-color: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+	/* text-align: center; */
+	/* line-height: 50px; */
+	/* color: red; */
+}
+
+.dong{
+	background-color: rgba(200, 200, 200, 0.5);
+	width: 280px;
+	height: 280px;
+	display: none;
+	position: relative;
+	top: -284px;
+	left: 0px;
+}
+
+.dangao_son:hover .dong{
+	display: block;
+}
+.mai{
+	width: 180px;
+	height: 40px;
+	background-color: red;
+	color: white;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 40px;
+	/* display: none; */
+	position: relative;
+	top: 260px;
+	left: 46px;
+	cursor: pointer;
+}
+
+
+.more{
+	width: 120px;
+	height: 45px;
+	border: 1px solid red;
+	color: red;
+	border-radius: 7px;
+	text-align: center;
+	line-height: 45px;
+	cursor: pointer;
+	/* position: relative;
+	top: 20px;
+	right: 100px;*/
+	float: right; 
+	margin: 20px ;
+}
+.more:hover{
+	background-color: red;
+	color: white;
+}
+
+.zi{
+	width:156px;
+	height: 60px;
+	/* background-color: red; */
+	text-align: center;
+	line-height: 60px;
+	font-size: 27px;
+}
+

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group.dao.BorrowbooksMapper" >
+  <resultMap id="BaseResultMap" type="com.group.pojo.Borrowbooks" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="bookId" property="bookid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="appraisal" property="appraisal" jdbcType="VARCHAR" />
+    <association property="book" javaType="com.group.pojo.Book">
+      <id column="bookId" property="bookid" jdbcType="INTEGER" />
+      <result column="bookName" property="bookname" jdbcType="VARCHAR" />
+      <result column="theme" property="theme" jdbcType="VARCHAR" />
+      <result column="author" property="author" jdbcType="VARCHAR" />
+      <result column="press" property="press" jdbcType="VARCHAR" />
+      <result column="sum" property="sum" jdbcType="INTEGER" />
+      <result column="price" property="price" jdbcType="DECIMAL" />
+      <result column="picturePath" property="picturepath" jdbcType="VARCHAR" />
+      <result column="bookPath" property="bookpath" jdbcType="VARCHAR" />
+    </association>
+    <association property="user" javaType="com.group.pojo.User">
+      <id column="userId" property="userid" jdbcType="INTEGER"/>
+      <result column="userName" property="username" jdbcType="VARCHAR"/>
+      <result column="password" property="password" jdbcType="VARCHAR"/>
+      <result column="sex" property="sex" jdbcType="VARCHAR"/>
+      <result column="tel" property="tel" jdbcType="VARCHAR"/>
+      <result column="role" property="role" jdbcType="VARCHAR"/>
+      <result column="total" property="total" jdbcType="INTEGER"/>
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, bookId, date, state, appraisal
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from borrowbooks
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+SELECT borrowbooks.*,book.bookId as bookIdd,book.author,bookName,book.picturePath,book.bookPath ,book.press,book.theme,book.price from borrowbooks
+ JOIN `user` ON borrowbooks.userId=`user`.userId JOIN book on borrowbooks.bookId=book.bookId
+WHERE userName= #{username}
+  </select>
+
+  <select id="selectByUsernameByappraisal" resultMap="BaseResultMap" parameterType="java.lang.String" >
+SELECT borrowbooks.*,book.bookId as bookId,book.author,bookName,book.picturePath,book.bookPath,book.press from borrowbooks
+ JOIN `user` ON borrowbooks.userId=`user`.userId JOIN book on borrowbooks.bookId=book.bookId
+WHERE
+  userName= #{username} and
+
+appraisal is not null and appraisal !=''
+  </select>
+  <select id="selectByUsernameByappraisal1" resultMap="BaseResultMap">
+SELECT borrowbooks.*,book.bookId as bookIdd,book.author,bookName,book.picturePath,book.bookPath from borrowbooks
+ JOIN `user` ON borrowbooks.userId=`user`.userId JOIN book on borrowbooks.bookId=book.bookId
+WHERE
+appraisal is not null and appraisal !=''
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from borrowbooks
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group.pojo.Borrowbooks" >
+    insert into borrowbooks (id, userId, bookId, 
+      date, state, appraisal
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{appraisal,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group.pojo.Borrowbooks" >
+    insert into borrowbooks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="bookid != null" >
+        bookId,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="appraisal != null" >
+        appraisal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="bookid != null" >
+        #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="appraisal != null" >
+        #{appraisal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimary" parameterType="com.group.pojo.Borrowbooks" >
+    update borrowbooks
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="bookid != null" >
+        bookId = #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="appraisal != null" >
+        appraisal = #{appraisal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group.pojo.Borrowbooks" >
+    update borrowbooks
+    set userId = #{userid,jdbcType=INTEGER},
+      bookId = #{bookid,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      appraisal = #{appraisal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="select" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+   SELECT COUNT(state) FROM borrowbooks WHERE userId=#{userid} and state=1
+  </select>
+  <select id="selectByid" resultMap="BaseResultMap" parameterType="java.lang.Integer"  >
+ SELECT bookId FROM borrowbooks WHERE bookId=#{1} and userId=#{0} and state=1
+  </select>
+
+
+  <!--分页查询-->
+  <select id="queryAllBorrowBooks" resultMap="BaseResultMap">
+    select br.id,u.userId,u.userName,b.bookId,b.bookName,b.author,b.press,b.price,b.theme,b.picturePath,br.date,br.state from
+    borrowbooks br INNER JOIN `user` u ON br.userId = u.userId INNER JOIN book b ON b.bookId = br.bookId
+    <trim prefix="where" suffix=" " suffixOverrides="and">
+      <if test="userid!=null">
+        br.userId = #{userid} and
+      </if>
+      <if test="bookid!=null">
+        br.bookId = #{bookid} and
+      </if>
+    </trim>
+  </select>
+
+  <select id="selectBtuseid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  SELECT  <include refid="Base_Column_List" />
+  FROM borrowbooks WHERE userId=#{userid} and state=1
+  </select>
+
+
+  <!--添加-->
+  <!--未归还-->
+  <update id="returnAllBook">
+    UPDATE borrowbooks SET state=0
+    <trim prefix=" where">
+      id IN(
+      <foreach collection="list" item="x" separator=",">
+        #{x}
+      </foreach>
+      )
+    </trim>
+  </update>
+  <!--    归还-->
+
+  <update id="deleteAllBook">
+    UPDATE borrowbooks SET state=2
+    <trim prefix=" where">
+      id IN(
+      <foreach collection="list" item="x" separator=",">
+        #{x}
+      </foreach>
+      )
+    </trim>
+  </update>
+
+  <!--以归还-->
+  <select id="selectAllNoReturnBookByPage" resultMap="BaseResultMap" parameterType="com.group.pojo.Borrowbooks">
+  SELECT b.id,a.bookName,a.author,a.press,a.price,b.date FROM book a join borrowbooks b ON a.bookId=b.bookId
+  <trim prefix=" where" suffix=" " suffixOverrides="and">
+    b.userId=#{userid} and b.state=0 and
+    <if test="book.bookname!=null and book.bookname!=''">
+      a.bookName=#{book.bookname} and
+    </if>
+    <if test="book.author!=null and book.author!=''">
+      a.author=#{book.author} and
+    </if>
+    <if test="book.press!=null and book.press!=''">
+      a.press=#{book.press} and
+    </if>
+  </trim>
+  </select>
+  <!--    未归还-->
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  SELECT b.id,b.bookId,a.picturePath,a.bookName,a.author,a.press,a.price,b.date FROM book a join borrowbooks b ON a.bookId=b.bookId
+  where  b.userId=#{userid} and b.state=1
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.group.pojo.Borrowbooks">
+    update borrowbooks
+    <set>
+    state = 0,
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--    归还-->
+  <update id="updateById" parameterType="java.lang.Integer">
+    update borrowbooks
+    <set>
+    state = 2,
+    </set>
+    where id = #{id}
+  </update>
+
+</mapper>
